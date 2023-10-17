@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>department</title>
+</head>
+<body>
+{% block content %}
+    <div class="container">
+       <form method="post" action="{{ url_for('department')}}" enctype="multipart/form-data">
+           {{ form.department_name.label( class="col-sm-2 col-form-label")}}<br> {{ form.department_name(size=20, class="col-sm-2 col-form-label") }}<br>
+           {{ form.department_address.label( class="col-sm-2 col-form-label") }}<br>{{ form.department_address(size=20,class="col-sm-2 col-form-label") }}<br>
+       <br>
+           <input type="submit" value="add department"  class="btn btn-primary">
+       </form>
+
+    </div>
+
+    <div>
+    <!--department table data-->
+    <table class="table table-success table-striped">
+   {% if department == [] %}
+        <p>no record found.</p>
+        {% endif %}
+  <caption>List of Departments</caption>
+  <thead>
+    <tr>
+      <th scope="col">Sn</th>
+      <th scope="col">Department Name</th>
+      <th scope="col">Address Name</th>
+      <th scope="col">Department Contact</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for record in department %}
+    <tr>
+      <th scope="row">{{record.departmentID}}</th>
+      <td>{{record.department_name}}</td>
+      <td>{{record.department_address}}</td>
+        <td></td>
+      <td><a style="color: red" href="{{ url_for('delete',id=record.departmentID)}}">Delete</a>|
+            <a href="{{ url_for('edit',id=record.departmentID) }}">update</a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+</div>
+</body>
+</html>

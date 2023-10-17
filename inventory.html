@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inventory</title>
+</head>
+<body>
+{% block content %}
+ <div class="row mb-3" align="center">
+       <form method="post" action="{{ url_for('inventory') }}" enctype="multipart/form-data">
+               {{ form.product_categorie.label( class="col-sm-2 col-form-label") }}
+              {{ form.product_categorie(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_name.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_name(size=20, class="col-sm-2 col-form-label")  }}<br><br>
+           {{ form.product_barcode.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_barcode(size=20, class="col-sm-2 col-form-label")}}<br><br>
+            {{ form.product_serial_number.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_serial_number(size=20, class="col-sm-2 col-form-label") }}<br><br>
+             {{ form.product_quantity.label ( class="col-sm-2 col-form-label")}}
+           {{ form.product_quantity(size=20, class="col-sm-2 col-form-label") }}<br><br>
+                 {{ form.received_date.label( class="col-sm-2 col-form-label") }}
+           {{ form.received_date(size=20, class="col-sm-2 col-form-label") }}<br><br>
+            {{ form.product_brand.label ( class="col-sm-2 col-form-label")}}
+           {{ form.product_brand(size=20, class="col-sm-2 col-form-label") }}<br><br>
+            {{ form.product_details.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_details(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_condition.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_condition(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_status.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_status(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_department.label ( class="col-sm-2 col-form-label")}}
+           {{ form.product_department(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{form.product_address.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_address(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           <input type="submit" value="save item" class="btn btn-primary">
+       </form>
+
+    </div>
+    <!-- for items in store-->
+
+        <table class="table table-success table-striped">
+         {% if inventory==[] %}<p>No record found</p>{% endif %}
+  <caption>Product List</caption>
+  <thead>
+    <tr>
+      <th scope="col">SN</th>
+      <th scope="col">Department</th>
+      <th scope="col">Address</th>
+      <th scope="col">Item</th>
+         <th scope="col">Quantity</th>
+        <th scope="col">Category</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Barcode</th>
+         <th scope="col">Serial Number</th>
+         <th scope="col">Status</th>
+         <th scope="col">Condition</th>
+         <th scope="col">Issued Date</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in inventory %}
+    <tr>
+      <th scope="row">{{ item.productID }}</th>
+        <td>{{ item.product_department }}</td>
+        <td>{{ item.product_address }}</td>
+        <td>{{ item.product_name }}</td>
+            <td>{{ item.product_quantity }}</td>
+        <td>{{ item.product_categorie }}</td>
+        <td>{{ item.product_brand }}</td>
+        <td>{{ item.product_barcode }}</td>
+            <td>{{ item.product_serial_number }}</td>
+        <td>{{ item.product_status }}</td>
+        <td>{{ item.product_condition }}</td>
+    <td>{{ item.received_date }}</td>
+          <!--           If user id is 1 then they can see the add Post delete product see tabs -->
+        {% if current_user.id == 1 %}
+    <td><a style="color: red" href="{{ url_for('delete',id=item.id)}}">Delete</a>|
+            <a href="{{ url_for('edit',id=item.id) }}">update</a></td>
+    {% endif %}
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+</body>
+</html>

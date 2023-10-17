@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main store reg</title>
+</head>
+<body>
+{% block content %}
+    <div class="container">
+       <form method="post" action="{{ url_for('main_store')}}" enctype="multipart/form-data">
+           {{ form.store_name.label( class="col-sm-2 col-form-label")}}<br>
+                 {{ form.store_name(size=20, class="col-sm-2 col-form-label") }}<br>
+           {{ form.store_address.label( class="col-sm-2 col-form-label") }}<br>
+                {{ form.store_address(size=20,class="col-sm-2 col-form-label") }}<br><br>
+           <input type="submit" value="add store"  class="btn btn-primary">
+       </form>
+
+    </div>
+
+    <div>
+    <!--main store table data-->
+    <table class="table table-success table-striped">
+   {% if store == [] %}
+        <p>no record found.</p>
+        {% endif %}
+  <caption>List of Stores</caption>
+  <thead>
+    <tr>
+      <th scope="col">Sn</th>
+      <th scope="col">Department Name</th>
+      <th scope="col">Address Name</th>
+      <th scope="col">Department Contact</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for storage in store %}
+    <tr>
+      <th scope="row">{{storage.store_id}}</th>
+      <td>{{storage.store_name}}</td>
+      <td>{{storage.store_address}}</td>
+        <td></td>
+      <td><a style="color: red" href="{{ url_for('delete',departmentID=record.departmentID)}}">Delete</a>|
+            <a href="{{ url_for('edit',department=record.departmentID) }}">update</a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+</div>
+</body>
+</html>

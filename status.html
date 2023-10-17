@@ -1,0 +1,59 @@
+{% include 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+     <div>
+        <p>
+         {%  for item in inventory %}
+            <h6>Name of product:{{ item.product_name }}</h6>  <h6>item code</h6>
+            <h6>unit of issue:{{ item.product_quantity }}</h6><h6>Year:{{ item.received_date }}</h6>
+            <h6>Maximum stock(Quantity):{{ item.product_quantity }}</h6>
+         {% endfor %}
+        </p>
+ </div>
+    <table class="table table-success table-striped" border="1px" style="border: 1px;border-style: solid">
+        <thead>STORE ITEM BIN-CARD</thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Date</th>
+            <th scope="col">Department</th>
+            <th scope="col">Reciept</th>
+            <th scope="col">Recieved<span> from</span></th>
+            <th scope="col" colspan="3">Quantity</th>
+        </tr>
+        <tr>
+             <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Recieved</th>
+            <th>issued</th>
+            <th>Balance</th>
+        </tr>
+     </thead>
+  <tbody>
+       {% for item in inventory %}S
+        <tr>
+           <td>{{ item.productID }}</td>
+            <td>{{ item.received_date }}</td>
+            <td>{{ item.product_department }}</td>
+            <td>00000</td>
+            <td>main store</td>
+            <td>{{ item.product_quantity }}</td>
+            <td>0</td>
+            <td>{{ item.product_quantity }}</td>
+        </tr>
+ {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+</body>
+</html>
+
+

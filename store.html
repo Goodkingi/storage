@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>store</title>
+</head>
+<body>
+{% block content %}
+ <table class="table table-success table-striped">
+         {% if inventory==[] %}<p>No record found</p>{% endif %}
+  <caption>Product List</caption>
+  <thead>
+    <tr>
+      <th scope="col">SN</th>
+      <th scope="col">Department</th>
+      <th scope="col">Address</th>
+      <th scope="col">Item</th>
+         <th scope="col">Quantity</th>
+        <th scope="col">Category</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Barcode</th>
+         <th scope="col">Serial Number</th>
+         <th scope="col">Status</th>
+         <th scope="col">Condition</th>
+         <th scope="col">Issued Date</th>
+        <th scope="col">Balance</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in inventory %}
+    <tr>
+      <th scope="row">{{ item.productID }}</th>
+        <td>{{ item.product_department }}</td>
+        <td>{{ item.product_address }}</td>
+        <td>{{ item.product_name }}</td>
+            <td>{{ item.product_quantity }}</td>
+        <td>{{ item.product_categorie }}</td>
+        <td>{{ item.product_brand }}</td>
+        <td>{{ item.product_barcode }}</td>
+            <td>{{ item.product_serial_number }}</td>
+        <td>{{ item.product_status }}</td>
+        <td>{{ item.product_condition }}</td>
+    <td>{{ item.received_date }}</td>
+        <td></td>
+    <td><a style="color: red" href="{{ url_for('delete',product_id=item.product_id)}}">Delete</a>|
+            <a href="{{ url_for('edit',product_id=item.product_id) }}">update</a></td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+</div>
+
+</body>
+</html>

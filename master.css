@@ -1,0 +1,10 @@
+ table.th,td {
+            background-color: aliceblue;
+            border: 1px solid black;
+        }
+        table.center {
+            margin-left: auto;
+            margin-right: auto;}
+.image{
+    background-image: url("/static/tasaf.jpg");
+}

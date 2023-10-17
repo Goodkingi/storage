@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>staff</title>
+</head>
+<body>
+{% block content %}
+ <div class="container">
+       <form method="post" action="{{ url_for('staff')}}" enctype="multipart/form-data">
+           {{ form.staff_department.label( class="col-sm-2 col-form-label") }}<br>{{ form.staff_department(size=20,class="col-sm-2 col-form-label") }}<br>
+           {{ form.staff_first_name.label ( class="col-sm-2 col-form-label")}}<br> {{ form.staff_first_name(size=20, class="col-sm-2 col-form-label") }}<br>
+           {{ form.staff_last_name.label( class="col-sm-2 col-form-label") }}<br>{{ form.staff_last_name(size=20,class="col-sm-2 col-form-label")}}<br>
+            {{ form.username.label( class="col-sm-2 col-form-label") }}<br> {{ form.username(size=20, class="col-sm-2 col-form-label") }}<br>
+           {{ form.password.label( class="col-sm-2 col-form-label") }}<br> {{ form.password(size=20,class="col-sm-2 col-form-label") }}<br>
+            <br>
+           <input type="submit" value="add user"  class="btn btn-primary">
+       </form>
+
+    </div>
+
+    <table class="table table-success table-striped">
+     {% if staff_data==[] %}
+        <p>No record found</p>
+        {% endif %}
+  <caption>List of staffs</caption>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Department</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for item in staff_data %}
+    <tr>
+      <td scope="row">{{ item.staffID }}</td>
+      <td>{{ item.staff_first_name }}</td>
+      <td>{{ item.staff_last_name }}</td>
+        <td>{{ item.staff_department }}</td>
+      <td><a style="color: red" href="{{ url_for('delete',staff_data=item.staffID)}}">Delete</a>|
+            <a href="{{ url_for('edit',staff_data=item.staffID) }}">update</a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+{%  endblock %}
+</body>
+</html>

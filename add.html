@@ -1,0 +1,8 @@
+<form method="post" action="{{ url_for('add') }}">
+    {{ form.csrf_token }}
+    {{ form.department_code.label }}<br>{{ form.department_code(size=50) }}<br>
+     {{ form.department_name.label }}<br>{{ form.department_name(size=50) }}<br>
+     {{ form.department_address.label }}<br>{{ form.department_address(size=50) }}<br>
+     {{ form.last_updated.label }}<br>{{ form.last_updated(size=50) }}<br><br>
+    <input type="submit" value="add">
+</form>

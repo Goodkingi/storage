@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+{% block content %}
+ <div class="row mb-3" align="center">
+       <form method="post" action="{{ url_for('edit') }}" enctype="multipart/form-data">
+               {{ form.product_categorie.label( class="col-sm-2 col-form-label") }}
+              {{ form.product_categorie(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_name.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_name(size=20, class="col-sm-2 col-form-label")  }}<br><br>
+           {{ form.product_barcode.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_barcode(size=20, class="col-sm-2 col-form-label")}}<br><br>
+            {{ form.product_serial_number.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_serial_number(size=20, class="col-sm-2 col-form-label") }}<br><br>
+             {{ form.product_quantity.label ( class="col-sm-2 col-form-label")}}
+           {{ form.product_quantity(size=20, class="col-sm-2 col-form-label") }}<br><br>
+                 {{ form.received_date.label( class="col-sm-2 col-form-label") }}
+           {{ form.received_date(size=20, class="col-sm-2 col-form-label") }}<br><br>
+            {{ form.product_brand.label ( class="col-sm-2 col-form-label")}}
+           {{ form.product_brand(size=20, class="col-sm-2 col-form-label") }}<br><br>
+            {{ form.product_details.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_details(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_condition.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_condition(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_status.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_status(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{ form.product_department.label ( class="col-sm-2 col-form-label")}}
+           {{ form.product_department(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           {{form.product_address.label( class="col-sm-2 col-form-label") }}
+           {{ form.product_address(size=20, class="col-sm-2 col-form-label") }}<br><br>
+           <input type="submit" value="update " class="btn btn-primary">
+       </form>
+
+    </div>
+{% endblock %}
+</body>
+</html>
